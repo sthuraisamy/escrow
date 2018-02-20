@@ -44,7 +44,6 @@ contract Escrow {
         }
     }
 
-
     //Buyer releases balance deposit to seller and finishes teh contract
     function releaseBalanceToSeller() public {
         if (msg.sender == buyer) {
@@ -53,7 +52,6 @@ contract Escrow {
             revert();
         }
     }
-
 
     //Buyer returns the item
     function returnItemToSeller(string _status) public {
@@ -68,7 +66,6 @@ contract Escrow {
         status = _status;
     }
 
-
     //Seller releases balance to buyer and keep 25% for restocking fee
     function releaseBalanceToBuyer() public {
         if (msg.sender != seller) {
@@ -77,7 +74,6 @@ contract Escrow {
 
         selfdestruct(buyer);
     }
-
 
     //Buyer can withdraw deposit if escrow is expired
     function withdraw() public {
@@ -92,7 +88,6 @@ contract Escrow {
         }
     }
 
-
     // Seller cancel escrow and return all funds to buyer
     function cancel() public {
         if (msg.sender == seller) {
@@ -101,7 +96,6 @@ contract Escrow {
            revert();
         }
     }
-
 
     function isExpired() private constant returns (bool) {
         if (now > startTime + timeToExpiry) {
